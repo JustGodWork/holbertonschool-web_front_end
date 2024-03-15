@@ -1,9 +1,12 @@
 html {
     scroll-behavior: smooth;
+    font-size: 62.5%;
 }
 
 body {
     color: var(--text-color);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-medium);
 }
 
 a {
@@ -29,4 +32,15 @@ a {
     --color-light-grey: #f3f3f3;
     --color-dark-grey: #353535;
     --text-color: var(--color-black);
+    --font-family-base: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-family-title: var(--font-family-base);
+    --font-size-small: 1.2rem;
+    --font-size-medium: 1.6rem;
+    --font-size-large: 1.8rem;
+    --font-size-xlarge: 2.3rem;
+    --font-size-xx-large: 4.8rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-title);
 }
