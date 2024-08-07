@@ -1,0 +1,8 @@
+/* Add text color (#FF0000) to buttons when hover text change to (#00FF00) */
+
+button {
+  color: #FF0000;
+  &:hover {
+    color: #00FF00;
+  }
+}
