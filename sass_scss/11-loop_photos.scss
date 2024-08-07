@@ -1,0 +1,7 @@
+/* Loop through list-names */
+
+@each $name in $list-names {
+  .photo-#{$name} {
+    background-image: url('photos/#{$name}.jpg'), no-repeat;
+  }
+}
