@@ -1,0 +1,17 @@
+/* Write a Sass file that assigns the text color #3D3D3D to body/p, bg #6D6D6D to body/h2 */
+
+$primary-color: #3D3D3D;
+$bg-color: #6D6D6D;
+
+body {
+  color: $primary-color;
+  background-color: $bg-color;
+}
+
+p {
+  color: $primary-color;
+}
+
+h2 {
+  background-color: $bg-color;
+}
