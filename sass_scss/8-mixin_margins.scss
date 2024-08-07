@@ -1,0 +1,19 @@
+/* Add margin left 10px to body and margin right 10px to body */
+
+@mixin body-margin {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+@mixin div-margin {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+body {
+  @include body-margin;
+}
+
+div {
+  @include div-margin;
+}
