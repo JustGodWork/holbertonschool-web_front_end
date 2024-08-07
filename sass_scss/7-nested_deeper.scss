@@ -1,0 +1,13 @@
+/* Add font-size 14px to body and font-size 16px to body with class h1, font-size 12px to body with class h1 with class .smaller */
+
+body {
+  font-size: 14px;
+
+  .h1 {
+    font-size: 16px;
+
+    &.smaller {
+      font-size: 12px;
+    }
+  }
+}
