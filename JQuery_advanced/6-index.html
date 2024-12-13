@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" crossorigin="anonymous"
+        type="application/javascript"></script>
+    <script type="application/javascript">
+        function createForm() {
+            const form = $('<form></form>');
+            const firstNameInput = $('<input type="text" placeholder="First Name">');
+            const lastNameInput = $('<input type="text" placeholder="Last Name">');
+            const select = $('<select></select>');
+            const beforeOption = $('<option value="before">Before</option>').text('Before');
+            const afterOption = $('<option value="after">After</option>').text('After');
+            const submitButton = $('<input type="submit" value="Add Member">');
+
+            select.append(beforeOption, afterOption);
+            form.append(firstNameInput, lastNameInput, select, submitButton);
+            $('body').prepend(form);
+
+            form.submit(function (event) {
+                event.preventDefault();
+                const firstName = firstNameInput.val();
+                const lastName = lastNameInput.val();
+                const position = select.val();
+                addNewMember(firstName, lastName, position);
+            });
+        }
+
+        function addNewMember(firstName, lastName, position) {
+            const t_body = $('table tbody');
+            const t_row = $('<tr></tr>');
+            const removeCell = $('<td></td>').text('(x)').css('background-color', 'orange');
+
+            removeCell.click(function () {
+                $(this).parent().remove();
+            });
+
+            t_row.append(
+                $('<td></td>').text(firstName),
+                $('<td></td>').text(lastName),
+                removeCell
+            );
+
+            if (position === 'before') {
+                t_body.prepend(t_row);
+            } else {
+                t_body.append(t_row);
+            }
+        }
+
+        $(document).ready(function () {
+            createFamilyTree();
+            createForm();
+            addNewMember('Guillaume', 'Salva', 'after');
+            addNewMember('Arielle', 'Snizt', 'after');
+            addNewMember('Fanette', 'Snizt', 'after');
+            addNewMember('Gerard', 'Snizt', 'after');
+            addNewMember('Victor', 'Salva', 'after');
+        });
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
