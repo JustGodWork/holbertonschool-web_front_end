@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" crossorigin="anonymous"
+        type="application/javascript"></script>
+    <script type="application/javascript">
+        function addPostRow(data) {
+            const paragraph = $('<p></p>');
+            const span = $('<span></span>').text(`Post created with id ${data.id}, title: ${data.title}, author: ${data.author}`);
+            paragraph.append(span);
+            $('body').append(paragraph);
+        }
+
+        function listPosts() {
+            $.get('http://localhost:3000/posts', function (response) {
+                response.forEach(post => {
+                    addPostRow(post);
+                });
+            }).fail(function () {
+                alert('Server Error');
+            });
+        }
+
+        $(document).ready(function () {
+            listPosts();
+        });
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
