@@ -1,12 +1,8 @@
-function setCookies() {
+function setCookiesAndShowWelcomeMessage() {
     const firstname = document.getElementById('firstname').value;
     const email = document.getElementById('email').value;
-    const date = new Date();
-    date.setTime(date.getTime() + (10 * 24 * 60 * 60 * 1000));
-    const expires = `expires=${date.toUTCString()}`;
-
-    document.cookie = `firstname=${firstname}; ${expires}; path=/`;
-    document.cookie = `email=${email}; ${expires}; path=/`;
+    Cookies.set('firstname', firstname);
+    Cookies.set('email', email);
     showWelcomeMessageOrForm();
 }
 
@@ -20,22 +16,6 @@ function showCookies() {
     const p = document.createElement('p');
     p.innerHTML = `Email: ${cookies.email} - Firstname: ${cookies.firstname}`;
     document.body.appendChild(p);
-}
-
-/**
- *
- * @param {String} name
- * @returns {String}
- */
-function getCookie(name) {
-    const cookies = document.cookie.split('; ');
-    for (let cookie of cookies) {
-        const [cookieName, cookieValue] = cookie.split('=');
-        if (cookieName === name) {
-            return cookieValue;
-        }
-    }
-    return '';
 }
 
 function showForm() {
@@ -53,22 +33,31 @@ function hideForm() {
 }
 
 function deleteCookiesAndShowForm() {
-    document.cookie = 'firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    document.cookie = 'email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    showForm();
+    Cookies.remove('firstname');
+    Cookies.remove('email');
+    showWelcomeMessageOrForm();
 }
 
 function showWelcomeMessageOrForm() {
-    const firstname = getCookie('firstname');
-    if (!firstname) {
-        showForm();
+    const firstname = Cookies.get('firstname');
+    const email = Cookies.get('email');
+    const loginForm = document.getElementById('login-form');
+
+    if (firstname && email) {
+        loginForm.innerHTML = `<h2>Welcome ${firstname}</h2>`;
     } else {
-        hideForm();
-        const welcomeMessage = document.createElement('h1');
-        welcomeMessage.id = 'welcome-message';
-        welcomeMessage.innerHTML = `Welcome ${firstname} <a href="#" onclick="deleteCookiesAndShowForm()" style="font-weight: normal; font-style: italic; margin-left: 10px;">(logout)</a>`;
-        document.body.appendChild(welcomeMessage);
+        loginForm.innerHTML = `
+            <h2>Login</h2>
+            <div>
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" id="email">
+            </div>
+            <button onclick="setCookiesAndShowWelcomeMessage()">Log me in</button>
+            <button onclick="showCookies()">Show the cookies</button>
+        `;
     }
 }
-
-showWelcomeMessageOrForm();

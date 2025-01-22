@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+</head>
+<body>
+    <div id="login-form">
+        <h2>Login</h2>
+        <div>
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email">
+        </div>
+        <button onclick="setCookiesAndShowWelcomeMessage()">Log me in</button>
+        <button onclick="showCookies()">Show the cookies</button>
+    </div>
+
+    <script src="./src/index.js"></script>
+</body>
+</html>
