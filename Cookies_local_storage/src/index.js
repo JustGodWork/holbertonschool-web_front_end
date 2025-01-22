@@ -20,3 +20,19 @@ function showCookies() {
     p.innerHTML = `Email: ${email} - Firstname: ${firstname}`;
     document.body.appendChild(p);
 }
+
+/**
+ *
+ * @param {String} name
+ * @returns {String}
+ */
+function getCookie(name) {
+    const cookies = document.cookie.split('; ');
+    for (let cookie of cookies) {
+        const [cookieName, cookieValue] = cookie.split('=');
+        if (cookieName === name) {
+            return cookieValue;
+        }
+    }
+    return '';
+}
